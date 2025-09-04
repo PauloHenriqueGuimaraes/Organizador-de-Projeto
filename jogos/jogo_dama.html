@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Damas</title>
+    <link rel="stylesheet" href="../css/jogo_dama.css">
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jogo de Damas</h1>
+        
+        <div class="game-info">
+            <div class="status">Sua vez!</div>
+            <div class="score">Você: 12 | Computador: 12</div>
+        </div>
+        
+        <div class="board" id="board"></div>
+        
+        <div class="controls">
+            <button id="restart">Reiniciar Jogo</button>
+            <button id="undo">Desfazer Jogada</button>
+        </div>
+        
+        <div class="instructions">
+            <h2>Como Jogar</h2>
+            <ul>
+                <li>Você joga com as peças vermelhas</li>
+                <li>Clique em uma peça para selecioná-la</li>
+                <li>Clique em uma casa destacada para mover</li>
+                <li>Peças viram damas ao alcançar a última linha</li>
+                <li>Damas podem mover-se para trás e para frente</li>
+                <li>Capture peças pulando sobre elas</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/jogo_dama.js">
+        
+    </script>
+</body>
+</html>

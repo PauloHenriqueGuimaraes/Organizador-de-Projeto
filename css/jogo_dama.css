@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 100%;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    max-width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.status {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.score {
+    font-size: 1.2rem;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    width: 400px;
+    height: 400px;
+    max-width: 100%;
+    border: 5px solid #5d4037;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    background-color: #8d6e63;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.dark {
+    background-color: #5d4037;
+}
+
+.light {
+    background-color: #d7ccc8;
+}
+
+.piece {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.player {
+    background: radial-gradient(circle at 30% 30%, #f44336, #b71c1c);
+    cursor: pointer;
+}
+
+.computer {
+    background: radial-gradient(circle at 30% 30%, #212121, #000);
+}
+
+.king::after {
+    content: "♔";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: gold;
+    font-size: 20px;
+    text-shadow: 0 0 3px black;
+}
+
+.selected {
+    box-shadow: 0 0 0 3px yellow, 0 0 10px 5px rgba(255, 255, 0, 0.5);
+    transform: scale(1.1);
+}
+
+.valid-move {
+    position: relative;
+}
+
+.valid-move::before {
+    content: "";
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    background-color: rgba(0, 255, 0, 0.5);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    background: linear-gradient(to bottom, #4CAF50, #2E7D32);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(to bottom, #66BB6A, #388E3C);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.instructions {
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.instructions h2 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.instructions ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.instructions li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.instructions li::before {
+    content: "•";
+    color: #4CAF50;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -5px;
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .board {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .game-info {
+        width: 320px;
+    }
+}
