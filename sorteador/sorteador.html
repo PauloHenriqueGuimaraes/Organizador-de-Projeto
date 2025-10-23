@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteador Universal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/sorteador.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-random"></i> Sorteador Universal</h1>
+            <p class="subtitle">Sorteie números, nomes ou importe de Excel - sem repetições!</p>
+        </header>
+        
+        <div class="tabs-container">
+            <button class="tab active" data-tab="numbers">
+                <i class="fas fa-sort-numeric-up"></i> Sortear Números
+            </button>
+            <button class="tab" data-tab="names">
+                <i class="fas fa-users"></i> Sortear Nomes
+            </button>
+            <button class="tab" data-tab="excel">
+                <i class="fas fa-file-excel"></i> Importar do Excel
+            </button>
+        </div>
+        
+        <div class="content">
+            <div class="alert alert-success" id="successAlert"></div>
+            <div class="alert alert-error" id="errorAlert"></div>
+            
+            <!-- Tab de Números -->
+            <div class="tab-content active" id="numbers-tab">
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-cog"></i> Configurações do Sorteio</h3>
+                    <div class="flex-row">
+                        <div class="form-group">
+                            <label for="minNumber"><i class="fas fa-minus-circle"></i> Número Mínimo</label>
+                            <input type="number" id="minNumber" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="maxNumber"><i class="fas fa-plus-circle"></i> Número Máximo</label>
+                            <input type="number" id="maxNumber" value="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity"><i class="fas fa-list-ol"></i> Quantidade a Sortear</label>
+                            <input type="number" id="quantity" value="1" min="1">
+                        </div>
+                    </div>
+                    <button class="btn" id="drawNumber">
+                        <i class="fas fa-dice"></i> Sortear Número
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Tab de Nomes -->
+            <div class="tab-content" id="names-tab">
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-users"></i> Lista de Nomes</h3>
+                    <div class="form-group">
+                        <label for="nameList"><i class="fas fa-pencil-alt"></i> Digite os nomes (um por linha)</label>
+                        <textarea id="nameList" placeholder="Exemplo:
+João Silva
+Maria Santos
+Pedro Oliveira"></textarea>
+                    </div>
+                    <button class="btn" id="drawName">
+                        <i class="fas fa-user-check"></i> Sortear Nome
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Tab de Excel -->
+            <div class="tab-content" id="excel-tab">
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-file-import"></i> Importar do Excel</h3>
+                    <div class="form-group">
+                        <label for="excelFile"><i class="fas fa-file-upload"></i> Selecione o arquivo</label>
+                        <div class="file-input-container">
+                            <input type="file" id="excelFile" class="file-input" accept=".xlsx, .xls">
+                            <label for="excelFile" class="file-input-label" id="fileInputLabel">
+                                <i class="fas fa-cloud-upload-alt"></i> 
+                                <span>Clique para selecionar um arquivo Excel</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="columnSelect"><i class="fas fa-columns"></i> Coluna para Sortear</label>
+                        <select id="columnSelect" disabled>
+                            <option value="">Selecione uma coluna</option>
+                        </select>
+                    </div>
+                    <button class="btn" id="drawExcel" disabled>
+                        <i class="fas fa-file-export"></i> Sortear do Excel
+                    </button>
+                </div>
+            </div>
+            
+            <div class="result-container">
+                <div class="result-card">
+                    <div class="result-label">Resultado do Sorteio</div>
+                    <div class="result" id="result">-</div>
+                </div>
+                
+                <div class="history">
+                    <div class="history-header">
+                        <h3 class="history-title"><i class="fas fa-history"></i> Histórico de Sorteados</h3>
+                        <button class="btn btn-secondary" id="clearHistory">
+                            <i class="fas fa-trash-alt"></i> Limpar
+                        </button>
+                    </div>
+                    <div class="history-list" id="historyList">
+                        <div class="history-item">
+                            <i class="fas fa-info-circle"></i> Nenhum item sorteado ainda.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biblioteca para ler Excel -->
+    <script src="../js/sorteador.js"></script>
+    
+    <script>
+       
+    </script>
+</body>
+</html>

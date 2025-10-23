@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Master - Sistema Interativo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz.css">
+   
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-brain"></i> Quiz Master</h1>
+            <p>Desafie seu conhecimento e divirta-se aprendendo!</p>
+        </div>
+        
+        <div class="content">
+            <!-- Tela de Boas-Vindas -->
+            <div id="welcome-screen" class="screen active">
+                <div class="welcome-container">
+                    <div class="welcome-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h2>Bem-vindo ao Quiz Master!</h2>
+                    <p>Teste seus conhecimentos em nosso quiz interativo com diversas categorias</p>
+                    
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-questions-stat">0</div>
+                            <div class="stat-label">Perguntas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-users-stat">0</div>
+                            <div class="stat-label">Usuários</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-quizzes-stat">0</div>
+                            <div class="stat-label">Quizzes Realizados</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shuffle"></i>
+                            </div>
+                            <h3>Perguntas Embaralhadas</h3>
+                            <p>As opções são randomizadas a cada tentativa</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Estatísticas Detalhadas</h3>
+                            <p>Acompanhe seu progresso e desempenho</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <h3>Exportação de Dados</h3>
+                            <p>Baixe resultados em formato CSV</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="login-options">
+                    <div class="login-option active" id="user-option">
+                        <div class="login-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Jogador</h3>
+                        <p>Participe dos quizzes e desafie seus amigos</p>
+                    </div>
+                    <div class="login-option" id="admin-option">
+                        <div class="login-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3>Administrador</h3>
+                        <p>Gerencie perguntas e visualize estatísticas</p>
+                    </div>
+                </div>
+                
+                <div class="flex-buttons">
+                    <button id="start-user-btn" class="btn btn-success">
+                        <i class="fas fa-play"></i> Começar a Jogar
+                    </button>
+                    <button id="start-admin-btn" class="btn btn-secondary">
+                        <i class="fas fa-cog"></i> Painel Administrativo
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Tela de Cadastro/Login do Usuário -->
+            <div id="auth-screen" class="screen">
+                <h2><i class="fas fa-user-plus"></i> Cadastro de Usuário</h2>
+                <p>Crie sua conta para participar dos quizzes</p>
+                
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user"></i> Nome de usuário:</label>
+                    <input type="text" id="username" placeholder="Digite seu nome de usuário">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> E-mail:</label>
+                    <input type="email" id="email" placeholder="Digite seu e-mail">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Senha:</label>
+                    <input type="password" id="password" placeholder="Digite sua senha">
+                </div>
+                
+                <div class="flex-buttons">
+                    <button id="register-btn" class="btn">
+                        <i class="fas fa-user-plus"></i> Cadastrar e Jogar
+                    </button>
+                    <button id="back-to-welcome-btn" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Tela de Login Administrativo -->
+            <div id="admin-login-screen" class="screen">
+                <h2><i class="fas fa-crown"></i> Acesso Administrativo</h2>
+                <p>Área restrita para administradores do sistema</p>
+                
+                <div class="form-group">
+                    <label for="admin-username"><i class="fas fa-user-shield"></i> Usuário admin:</label>
+                    <input type="text" id="admin-username" placeholder="Digite o usuário admin">
+                </div>
+                
+                <div class="form-group">
+                    <label for="admin-password"><i class="fas fa-key"></i> Senha admin:</label>
+                    <input type="password" id="admin-password" placeholder="Digite a senha admin">
+                </div>
+                
+                <div class="flex-buttons">
+                    <button id="admin-login-confirm-btn" class="btn">
+                        <i class="fas fa-sign-in-alt"></i> Acessar Painel Admin
+                    </button>
+                    <button id="back-to-welcome-btn-2" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Tela do Quiz -->
+            <div id="quiz-screen" class="screen">
+                <div class="quiz-info">
+                    <div><i class="fas fa-user"></i> Usuário: <span id="current-user">-</span></div>
+                    <div><i class="fas fa-star"></i> Pontuação: <span id="current-score">0</span></div>
+                    <div><i class="fas fa-list-ol"></i> Pergunta: <span id="current-question">0</span>/<span id="total-questions">0</span></div>
+                    <div class="timer">
+                        <i class="fas fa-clock"></i> <span id="quiz-timer">05:00</span>
+                    </div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress" id="quiz-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div id="question-container" class="question-container">
+                    <!-- As perguntas serão inseridas aqui dinamicamente -->
+                </div>
+                
+                <div class="flex-buttons">
+                    <button id="prev-question-btn" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Anterior
+                    </button>
+                    <button id="next-question-btn" class="btn">
+                        Próxima <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button id="submit-quiz-btn" class="btn btn-success">
+                        <i class="fas fa-flag-checkered"></i> Finalizar Quiz
+                    </button>
+                </div>
+                
+                <button id="logout-btn" class="btn btn-danger" style="margin-top: 20px; width: 100%;">
+                    <i class="fas fa-sign-out-alt"></i> Sair do Quiz
+                </button>
+            </div>
+            
+            <!-- Tela de Resultados -->
+            <div id="results-screen" class="screen">
+                <div class="score-container">
+                    <h2>Quiz Finalizado!</h2>
+                    <p>Sua pontuação final:</p>
+                    <div class="score-value" id="final-score">0</div>
+                    <p>de <span id="max-score">0</span> pontos possíveis</p>
+                    <div id="performance-message" style="margin-top: 15px; font-size: 18px; font-weight: 600;"></div>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-value" id="correct-answers">0</div>
+                        <div class="stat-label">Corretas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="incorrect-answers">0</div>
+                        <div class="stat-label">Incorretas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="percentage-score">0%</div>
+                        <div class="stat-label">Percentual</div>
+                    </div>
+                </div>
+                
+                <h3><i class="fas fa-clipboard-list"></i> Resumo das Respostas</h3>
+                <div id="answers-summary">
+                    <!-- O resumo será inserido aqui dinamicamente -->
+                </div>
+                
+                <div class="flex-buttons">
+                    <button id="restart-quiz-btn" class="btn">
+                        <i class="fas fa-redo"></i> Fazer Outro Quiz
+                    </button>
+                    <button id="back-to-menu-btn" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> Voltar ao Início
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Painel Administrativo -->
+            <div id="admin-screen" class="screen">
+                <h2><i class="fas fa-crown"></i> Painel Administrativo</h2>
+                
+                <div class="admin-panel">
+                    <div class="admin-section">
+                        <h3><i class="fas fa-plus-circle"></i> Adicionar Nova Pergunta</h3>
+                        
+                        <div class="form-group">
+                            <label for="question-text">Pergunta:</label>
+                            <textarea id="question-text" rows="3" placeholder="Digite a pergunta"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="option1">Opção 1 (Resposta Correta):</label>
+                            <input type="text" id="option1" placeholder="Digite a primeira opção (resposta correta)">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="option2">Opção 2:</label>
+                            <input type="text" id="option2" placeholder="Digite a segunda opção">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="option3">Opção 3:</label>
+                            <input type="text" id="option3" placeholder="Digite a terceira opção">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="option4">Opção 4:</label>
+                            <input type="text" id="option4" placeholder="Digite a quarta opção">
+                        </div>
+                        
+                        <div class="flex-buttons">
+                            <button id="add-question-btn" class="btn">
+                                <i class="fas fa-plus"></i> Adicionar Pergunta
+                            </button>
+                            <button id="update-question-btn" class="btn btn-success hidden">
+                                <i class="fas fa-sync"></i> Atualizar Pergunta
+                            </button>
+                            <button id="cancel-edit-btn" class="btn btn-secondary hidden">
+                                <i class="fas fa-times"></i> Cancelar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h3><i class="fas fa-list"></i> Perguntas Existentes</h3>
+                        <div id="questions-list" class="question-list">
+                            <!-- Lista de perguntas será inserida aqui -->
+                        </div>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h3><i class="fas fa-users"></i> Usuários Cadastrados</h3>
+                        <div id="users-list" class="user-list">
+                            <!-- Lista de usuários será inserida aqui -->
+                        </div>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h3><i class="fas fa-chart-bar"></i> Estatísticas e Pontuações</h3>
+                        <div id="scores-list" class="user-scores">
+                            <!-- Lista de pontuações será inserida aqui -->
+                        </div>
+                        
+                        <div class="flex-buttons">
+                            <button id="export-csv-btn" class="btn">
+                                <i class="fas fa-download"></i> Exportar para CSV
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="admin-logout-btn" class="btn btn-danger" style="margin-top: 20px; width: 100%;">
+                    <i class="fas fa-sign-out-alt"></i> Sair do Painel Admin
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <div id="notification-text">Operação realizada com sucesso!</div>
+    </div>
+
+    <script type="text/javascript" src="../js/quiz.js">
+       
+    </script>
+</body>
+</html>
